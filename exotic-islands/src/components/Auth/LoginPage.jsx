@@ -3,7 +3,6 @@ import Input from '../common/Input';
 import { withRouter } from 'react-router-dom';
 import firebase, { auth } from '../../firebase/firebase';
 import toastr from 'toastr';
-import Auth from './Auth';
 import './auth.css';
 
 class LoginPage extends Component {
@@ -49,11 +48,7 @@ class LoginPage extends Component {
             this.state.password
         ).then(() => {
             this.props.history.push('/destinations');
-            
             toastr.success('Login successfully');
-        }).then(result => {
-            Auth.authenticateUser(result.token);
-
         }).catch(err => {
             this.setState({ error: err });
             toastr.error('Login is not successfully');

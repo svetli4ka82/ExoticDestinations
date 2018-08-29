@@ -16,6 +16,7 @@ export default class MyDestinations extends Component {
         this.deleteDestination = this.deleteDestination.bind(this);
     }
     componentWillMount() {
+      this.getUserCollectionAndSetState();
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 this.setState({
@@ -24,33 +25,31 @@ export default class MyDestinations extends Component {
             }
         })
     }
+   
 
-    componentDidMount() {
-        firebase.database().ref('destinations/')
-            .on('value', (snapshot) => {
-                let items = snapshot.val();
-
-                let newState = [];
-
-                for (let item in items) {
-
-                    if (items[item].userKey === this.state.userKey) {
-                        newState.push(
-                            {
-                                id: item,
-                                name: items[item].name,
-                                location: items[item].location,
-                                description: items[item].description,
-                                image: items[item].image,
-                                userKey: items[item].userKey
-                            }
-                        );
-                    }
-                    this.setState({ destinations: newState });
+    getUserCollectionAndSetState = () =>{
+      firebase.database().ref('destinations/')
+        .on('value', (snapshot) => {
+          let items = snapshot.val();
+          let newState = [];
+          for (let item in items) {
+            if (items[item].userKey === firebase.auth().currentUser.uid) {
+              newState.push(
+                {
+                  id: item,
+                  name: items[item].name,
+                  location: items[item].location,
+                  description: items[item].description,
+                  image: items[item].image,
+                  userKey: items[item].userKey
                 }
-            });
-    }
-
+              );
+            }
+            this.setState({ destinations: newState });
+          }
+        });
+    };
+    
     deleteDestination(id) {
         const itemRef = firebase.database().ref(`/destinations/${id}`);
         itemRef.remove();
@@ -64,10 +63,11 @@ export default class MyDestinations extends Component {
                     <h1 className="pageTitle">My Destinations</h1>
 
                     {this.state.destinations.length === 0
-                        ? <p>Loading &hellip;</p>
+                        ? <h4>No destinations in your collection</h4>
                         : <DestinationList
                             destinations={this.state.destinations}
-                            deleteDestination={this.deleteDestination} />}
+                            deleteDestination={this.deleteDestination}
+                            erasable={true}/>}
                 </div>
             </div>
         );

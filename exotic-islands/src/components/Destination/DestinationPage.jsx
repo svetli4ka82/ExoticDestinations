@@ -50,6 +50,7 @@ export default class DestinationPage extends Component {
                     {this.state.destinations.length === 0
                         ? <p>Loading &hellip;</p>
                         : <DestinationList
+                            isAdmin={this.props.isAdmin}
                             destinations={this.state.destinations}
                             deleteDestination={this.deleteDestination} />}
                 </div>

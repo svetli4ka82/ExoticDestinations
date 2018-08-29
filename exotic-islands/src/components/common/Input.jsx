@@ -13,8 +13,8 @@ export default class Input extends Component {
                     id={name}
                     type={type}
                     value={value}
+                    errors={errors}
                     />
-                    <span className="error">{errors}</span>
             </div>
         );
     }

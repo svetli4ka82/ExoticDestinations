@@ -20,7 +20,7 @@ export default class EditDestination extends Component {
     }
 
     //take info from the DB
-    componentWillMount = () => {
+    componentWillMount(){
         this.getInfoFromDB()
     }
 

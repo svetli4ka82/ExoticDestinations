@@ -16,7 +16,6 @@ export default class DestinationDetails extends Component {
 
     render() {
         const { isAdmin } = this.props;
-        console.log(isAdmin)
         return (
             <div className="container" >
                 <h1 className="pageTitle">Details Page</h1>

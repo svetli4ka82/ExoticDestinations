@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Input from '../common/Input';
 import firebase from '../../firebase/firebase';
-import Auth from './Auth';
 import toastr from 'toastr';
 
 class RegisterPage extends Component {
@@ -37,7 +36,7 @@ class RegisterPage extends Component {
             || this.state.password === ''
             || this.state.password.length < 6
             || this.state.repeat === ''
-            || this.state.repeat > 6) {
+            || this.state.repeat !== this.state.password) {
             this.setState({
                 errors: {
                     message: 'Check the form for errors',
@@ -72,11 +71,8 @@ class RegisterPage extends Component {
             firebase.database().ref('users')
                 .push(user)
                 .then(() => {
-                    this.props.history.push('/login');
+                    this.props.history.push('/');
                     toastr.success('Registration is successfully');
-                }).then(result => {
-                    Auth.authenticateUser(result.token);
-
                 })
         }).catch(err => {
             this.setState({ error: err });
