@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Rochester'); 
+
+.welcome {
+    text-align: center;
+    font-family: 'Rochester', cursive; 
+}
+.welcome-title {
+    color: darkgreen;
+    padding: 50px 0;
+    font-size: 90px;
+    text-shadow: 2px 2px honeydew;
+}
+
+.welcome-box{
+    width: 70%;
+    height: 500px;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+.welcome-pic{
+    width: 95%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 17px 0;
+}
+
+img{
+    width: 100%;
+    vertical-align: middle;
+    border-style: none;
+    height: 100%;
+}
+
+.h1-welcome,
+.par-Welcome{
+    margin: 10px 0 10px 0;
+    color: darkgreen;
+}
+
+.h2-Welcome{
+    margin-top: 10px;
+    padding-bottom: 20px;
+    color: darkgreen;
+    margin-bottom: 0;
+}
+
+.par-Welcome{
+    padding-bottom: 40px;
+    margin-bottom: 0;
+}
+

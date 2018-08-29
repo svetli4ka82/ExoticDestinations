@@ -1,0 +1,16 @@
+.container-login {
+    height: 565px;
+}
+
+.form-group.col {
+    margin: 0 auto;
+    width: 40rem;
+}
+
+.btn {
+    width: 111px;
+    height: 40px;
+    margin-top: 20px;
+    background: lightseagreen;
+    color: white;
+}

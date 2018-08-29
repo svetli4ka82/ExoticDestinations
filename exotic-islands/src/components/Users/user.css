@@ -1,0 +1,19 @@
+/* //users */
+
+.user {
+    width: 30%;
+    height: 265px;
+    background: rgb(207, 252, 207);
+    margin-bottom: 20px;
+    border:1px solid rgb(115, 141, 71);
+    border-radius: 7px;
+}
+
+.users-list {
+    display: inline-flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.btn.editUser{
+
+}
