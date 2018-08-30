@@ -46,19 +46,43 @@ export default class EditUser extends Component {
         let user = this.state;
         let error = '';
         if (this.state.firstName === ''
-            || this.state.firstName === 'undefined'
-            || this.state.lastName === ''
-            || this.state.lastName === 'undefined'
-            || this.state.email === ''
-            || this.state.email === 'undefined'
-            || this.state.role === '') {
+            || this.state.firstName === 'undefined') {
             this.setState({
                 error: {
-                    message: 'Check the form for errors',
+                    message: 'First Name can not be empty!',
                 }
             });
             return;
         }
+        if (this.state.lastName === ''
+            || this.state.lastName === 'undefined') {
+            this.setState({
+                error: {
+                    message: 'Last Name can not be empty!',
+                }
+            });
+            return;
+        }
+
+        if (this.state.email === ''
+            || this.state.email === 'undefined') {
+            this.setState({
+                error: {
+                    message: 'Email can not be empty!',
+                }
+            });
+            return;
+        }
+
+        if (this.state.role !== 'Admin' || this.state.role !== 'User') {
+            this.setState({
+                error: {
+                    message: 'Role can be only Admin or User!',
+                }
+            });
+            return;
+        }
+
         let ref = await firebase.database()
             .ref(`users/${this.state.id}`)
             .update({
